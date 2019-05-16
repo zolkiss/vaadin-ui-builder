@@ -8,5 +8,5 @@
     <artifactId>vaadin-ui-builder</artifactId>
     <version>DEVELOPMENT</version>
 
-
+    <description>A menu builder for Vaadin 14 LTS</description>
 </project>
