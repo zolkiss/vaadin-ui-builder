@@ -6,7 +6,7 @@
 
     <groupId>hu.zolkiss</groupId>
     <artifactId>vaadin-ui-builder</artifactId>
-    <version>MASTER</version>
+    <version>DEVELOPMENT</version>
 
 
 </project>
