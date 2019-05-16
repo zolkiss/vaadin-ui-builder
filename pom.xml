@@ -6,7 +6,7 @@
 
     <groupId>hu.zolkiss</groupId>
     <artifactId>vaadin-ui-builder</artifactId>
-    <version>DEVELOPMENT</version>
+    <version>MASTER</version>
 
     <description>A menu builder for Vaadin 14 LTS</description>
 
