@@ -1,4 +1,4 @@
-package hu.zolkiss.uibuilder.api.descriptor;
+package hu.zolkiss.uibuilder.api.page.descriptor;
 
 import java.util.Collection;
 import java.util.List;
