@@ -6,7 +6,97 @@
 
     <groupId>hu.zolkiss</groupId>
     <artifactId>vaadin-ui-builder</artifactId>
-    <version>MASTER</version>
+    <version>DEVELOPMENT</version>
+
+    <description>A menu builder for Vaadin 14 LTS</description>
+
+    <properties>
+        <spring.version>5.1.7.RELEASE</spring.version>
+        <flow.version>2.0.0.rc1</flow.version>  <!-- this must be updated according to the Vaadin version-->
+
+        <flow.snapshot.repo.id>vaadin-snapshots</flow.snapshot.repo.id>
+        <flow.snapshot.repo.url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</flow.snapshot.repo.url>
+        <flow.release.repo.id>vaadin-prereleases</flow.release.repo.id>
+        <flow.release.repo.url>https://maven.vaadin.com/vaadin-prereleases/</flow.release.repo.url>
+        <flow.addons.repo.id>vaadin-addons</flow.addons.repo.id>
+        <flow.addons.repo.url>http://maven.vaadin.com/vaadin-addons</flow.addons.repo.url>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>${flow.release.repo.id}</id>
+            <url>${flow.release.repo.url}</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>${flow.snapshot.repo.id}</id>
+            <url>${flow.snapshot.repo.url}</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>${flow.addons.repo.id}</id>
+            <url>${flow.addons.repo.url}</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>${flow.release.repo.id}</id>
+            <url>${flow.release.repo.url}</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>${flow.snapshot.repo.id}</id>
+            <url>${flow.snapshot.repo.url}</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

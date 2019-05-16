@@ -1,0 +1,1 @@
+The active development is halted due the missing Drag&Drop component in the Vaadin 14 beta.
