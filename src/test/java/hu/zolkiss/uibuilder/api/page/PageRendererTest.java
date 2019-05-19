@@ -11,46 +11,44 @@ import hu.zolkiss.uibuilder.api.page.component.TextFieldDescriptor;
 import hu.zolkiss.uibuilder.api.page.component.VerticalLayoutDescriptor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static hu.zolkiss.uibuilder.api.page.PageRenderer.renderDescriptor;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {PageReflectionHelper.class, PageRenderer.class})
 class PageRendererTest {
 
-  @Autowired
-  PageRenderer renderer;
+  private static final String TEXT_FIELD_CONTENT = "TEXT_LABEL_01";
 
   @Test
-  @DisplayName("Simple label render")
+  @DisplayName("Label render")
   void renderLabel() {
-    assertComponentClass(renderer.renderDescriptor(new LabelDescriptor()), Label.class);
+    Component label = renderDescriptor(new LabelDescriptor().setValue(TEXT_FIELD_CONTENT));
+    assertComponentClass(label, Label.class);
+    assertThat(((Label) label).getText(), equalTo(TEXT_FIELD_CONTENT));
   }
 
   @Test
-  @DisplayName("Simple text field render")
+  @DisplayName("Text field render")
   void renderTextField() {
-    assertComponentClass(renderer.renderDescriptor(new TextFieldDescriptor()), TextField.class);
+    Component textField = renderDescriptor(new TextFieldDescriptor().setValue(TEXT_FIELD_CONTENT));
+    assertComponentClass(textField, TextField.class);
+    assertThat(((TextField) textField).getValue(), equalTo(TEXT_FIELD_CONTENT));
   }
 
   @Test
   @DisplayName("Simple horizontal layout render")
   void renderHorizontalLayout() {
-    assertComponentClass(renderer.renderDescriptor(new HorizontalLayoutDescriptor()), HorizontalLayout.class);
+    assertComponentClass(renderDescriptor(new HorizontalLayoutDescriptor()), HorizontalLayout.class);
   }
 
   @Test
   @DisplayName("Simple vertical render")
   void renderVerticalLayout() {
-    assertComponentClass(renderer.renderDescriptor(new VerticalLayoutDescriptor()), VerticalLayout.class);
+    assertComponentClass(renderDescriptor(new VerticalLayoutDescriptor()), VerticalLayout.class);
   }
 
   @Test
@@ -60,7 +58,7 @@ class PageRendererTest {
     vLayoutDescriptor.addChild(new LabelDescriptor());
     vLayoutDescriptor.addChild(new TextFieldDescriptor());
 
-    Component component = renderer.renderDescriptor(vLayoutDescriptor);
+    Component component = renderDescriptor(vLayoutDescriptor);
     assertComponentClass(component, VerticalLayout.class);
     List<Component> children = component.getChildren().collect(Collectors.toList());
 
