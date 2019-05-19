@@ -22,12 +22,14 @@ public abstract class OrderedLayoutDescriptor<C extends Component & HasComponent
     this.children = children;
   }
 
-  public void addChild(ElementDescriptor child) {
+  public OrderedLayoutDescriptor<C> addChild(ElementDescriptor child) {
     children.add(child);
+    return this;
   }
 
-  public void addChildren(Collection<ElementDescriptor> children) {
+  public OrderedLayoutDescriptor<C> addChildren(Collection<ElementDescriptor> children) {
     this.children.addAll(children);
+    return this;
   }
 
   public abstract OrderedLayoutOrientation getOrientation();

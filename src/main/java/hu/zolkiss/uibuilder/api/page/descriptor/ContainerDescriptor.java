@@ -8,7 +8,7 @@ import java.util.List;
 public interface ContainerDescriptor<C extends Component> extends ElementDescriptor<C> {
     List<ElementDescriptor> getChildren();
 
-    void addChild(ElementDescriptor child);
+    ContainerDescriptor<C> addChild(ElementDescriptor child);
 
-    void addChildren(Collection<ElementDescriptor> children);
+    ContainerDescriptor<C> addChildren(Collection<ElementDescriptor> children);
 }
