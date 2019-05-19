@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static hu.zolkiss.uibuilder.api.page.PageRenderer.renderDescriptor;
 import static hu.zolkiss.uibuilder.api.test.page.PageRenderTestUtils.assertComponentClass;
 
 @DisplayName("Vertical layout render test")
@@ -19,7 +18,7 @@ class VerticalLayoutDescriptorTest {
   @Test
   @DisplayName("Simple render")
   void simpleRender() {
-    assertComponentClass(renderDescriptor(new VerticalLayoutDescriptor()), VerticalLayout.class);
+    assertComponentClass(new VerticalLayoutDescriptor().render(), VerticalLayout.class);
   }
 
   @Test
@@ -29,9 +28,8 @@ class VerticalLayoutDescriptorTest {
     vLayoutDescriptor.addChild(new LabelDescriptor())
         .addChild(new TextFieldDescriptor());
 
-    Component component = renderDescriptor(vLayoutDescriptor);
-    assertComponentClass(component, VerticalLayout.class);
-    List<Component> children = component.getChildren().collect(Collectors.toList());
+    VerticalLayout verticalLayout = vLayoutDescriptor.render();
+    List<Component> children = verticalLayout.getChildren().collect(Collectors.toList());
 
     assertComponentClass(children.get(0), Label.class);
     assertComponentClass(children.get(1), TextField.class);

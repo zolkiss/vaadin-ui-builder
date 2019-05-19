@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static hu.zolkiss.uibuilder.api.page.PageRenderer.renderDescriptor;
 import static hu.zolkiss.uibuilder.api.test.page.PageRenderTestUtils.assertComponentClass;
 
 @DisplayName("Horizontal layout descriptor test")
@@ -19,7 +18,7 @@ class HorizontalLayoutDescriptorTest {
   @Test
   @DisplayName("Simple render")
   void simpleRender() {
-    assertComponentClass(renderDescriptor(new HorizontalLayoutDescriptor()), HorizontalLayout.class);
+    assertComponentClass(new HorizontalLayoutDescriptor().render(), HorizontalLayout.class);
   }
 
   @Test
@@ -29,9 +28,8 @@ class HorizontalLayoutDescriptorTest {
     hLayoutDescriptor.addChild(new LabelDescriptor())
         .addChild(new TextFieldDescriptor());
 
-    Component component = renderDescriptor(hLayoutDescriptor);
-    assertComponentClass(component, HorizontalLayout.class);
-    List<Component> children = component.getChildren().collect(Collectors.toList());
+    HorizontalLayout horizontalLayout = hLayoutDescriptor.render();
+    List<Component> children = horizontalLayout.getChildren().collect(Collectors.toList());
 
     assertComponentClass(children.get(0), Label.class);
     assertComponentClass(children.get(1), TextField.class);
